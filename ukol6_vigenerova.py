@@ -3,7 +3,7 @@ from pomocne import ABECEDA, je_pismeno, nacti_volbu
 
 def preved(text, klic, smer):
     if not klic or not all(je_pismeno(znak) for znak in klic):
-        raise ValueError("Klíč musí být neprázdné slovo složené z písmen A-Z.")
+        raise ValueError("klic nesmi byt prazdny a musi byt a-z.")
     klic = klic.upper()
     vysledek = ""
     poradi = 0
@@ -16,7 +16,6 @@ def preved(text, klic, smer):
             if znak.islower():
                 novy_znak = novy_znak.lower()
             vysledek += novy_znak
-            # Mezery a ostatní znaky žádné písmeno klíče nespotřebují.
             poradi += 1
         else:
             vysledek += znak
@@ -32,13 +31,10 @@ def desifruj(text, klic):
 
 
 if __name__ == "__main__":
-    try:
-        volba = nacti_volbu()
-        text = input("Zadej text: ")
-        klic = input("Zadej klíčové slovo: ")
-        if volba == "s":
-            print(zasifruj(text, klic))
-        else:
-            print(desifruj(text, klic))
-    except ValueError as chyba:
-        print("Chyba:", chyba)
+    volba = nacti_volbu()
+    text = input("Zadej text: ")
+    klic = input("Zadej klíčové slovo: ")
+    if volba == "s":
+        print(zasifruj(text, klic))
+    else:
+        print(desifruj(text, klic))

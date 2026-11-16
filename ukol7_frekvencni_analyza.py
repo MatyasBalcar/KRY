@@ -3,7 +3,7 @@ from pomocne import ABECEDA, jen_pismena
 
 def frekvencni_analyza(text, delka=1):
     if delka not in (1, 2, 3):
-        raise ValueError("Délka skupiny musí být 1, 2 nebo 3.")
+        raise ValueError("Delka musi byt 1/2/3")
 
     text = jen_pismena(text)
     pocty = {}
@@ -11,7 +11,6 @@ def frekvencni_analyza(text, delka=1):
         for znak in ABECEDA:
             pocty[znak] = 0
 
-    # Skupiny se překrývají, např. ABABA obsahuje ABA dvakrát.
     for i in range(len(text) - delka + 1):
         skupina = text[i:i + delka]
         pocty[skupina] = pocty.get(skupina, 0) + 1
@@ -22,7 +21,7 @@ def vypis_frekvence(text, delka=1):
     pocty = frekvencni_analyza(text, delka)
     celkem = sum(pocty.values())
     if not pocty:
-        print("Žádné výskyty.")
+        print("Nula vyskytu.")
         return
 
     for skupina in sorted(pocty):
@@ -35,9 +34,9 @@ if __name__ == "__main__":
     try:
         volba = input("Vstup z textu (t), nebo ze souboru (s)? ").strip().lower()
         if volba == "t":
-            text = input("Zadej text: ")
+            text = input("Text: ")
         elif volba == "s":
-            cesta = input("Cesta k textovému souboru: ").strip().strip('"')
+            cesta = input("Filepath: ").strip().strip('"')
             with open(cesta, encoding="utf-8-sig") as soubor:
                 text = soubor.read()
         else:

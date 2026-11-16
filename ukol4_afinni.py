@@ -5,7 +5,7 @@ from ukol2_euklides import rozsireny_euklides
 def inverze_klice(a):
     nsd, x, y = rozsireny_euklides(a % 26, 26)
     if nsd != 1:
-        raise ValueError("Klíč a musí být nesoudělný s 26, např. 5 nebo 7.")
+        raise ValueError("Klic a musí být nesoudelny s 26")
     return x % 26
 
 
@@ -26,14 +26,12 @@ def desifruj(text, a, b):
 
 
 if __name__ == "__main__":
-    try:
-        volba = nacti_volbu()
-        text = input("Zadej text: ")
-        a = int(input("Zadej klíč a: "))
-        b = int(input("Zadej klíč b: "))
-        if volba == "s":
-            print(zasifruj(text, a, b))
-        else:
-            print(desifruj(text, a, b))
-    except ValueError as chyba:
-        print("Chyba:", chyba)
+    volba = nacti_volbu()
+    text = input("Text: ")
+    a = int(input("Zadej klic a: "))
+    b = int(input("Zadej klic b: "))
+    if volba == "s":
+        print(zasifruj(text, a, b))
+    else:
+        print(desifruj(text, a, b))
+

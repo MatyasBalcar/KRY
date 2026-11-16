@@ -3,10 +3,10 @@ from pomocne import ABECEDA, je_pismeno, nacti_volbu, preved_text
 
 def over_klic(klic):
     if len(klic) != 26 or not all(je_pismeno(znak) for znak in klic):
-        raise ValueError("Klíč musí obsahovat právě 26 písmen A-Z.")
+        raise ValueError("Klic musi mit 26 pismen.")
     klic = klic.upper()
     if len(set(klic)) != 26:
-        raise ValueError("Každé písmeno musí být v klíči právě jednou.")
+        raise ValueError("Unique pismena v klici.")
     return klic
 
 
@@ -23,13 +23,10 @@ def desifruj(text, klic):
 
 
 if __name__ == "__main__":
-    try:
-        volba = nacti_volbu()
-        text = input("Zadej text: ")
-        klic = input("Zadej přeházenou abecedu (26 různých písmen A-Z): ")
-        if volba == "s":
-            print(zasifruj(text, klic))
-        else:
-            print(desifruj(text, klic))
-    except ValueError as chyba:
-        print("Chyba:", chyba)
+    volba = nacti_volbu()
+    text = input("Text: ")
+    klic = input("Prehazena abeceda : ")
+    if volba == "s":
+        print(zasifruj(text, klic))
+    else:
+        print(desifruj(text, klic))
